@@ -7,17 +7,22 @@
 
 ---
 
-## 📦 이 레포에 들어있는 것
+## 📦 이 레포 구조
 
-| 파일 | 용도 |
-|---|---|
-| `claude-config-pack-mac.zip` | 🍎 macOS / Linux 사용자용 설정 팩 |
-| `claude-config-pack-windows.zip` | 🪟 Windows 사용자용 설정 팩 |
-| `README.md` | 지금 보고 있는 이 문서 |
-
-각 zip 안에는:
-- `dot-claude/` - `~/.claude/` 폴더에 들어갈 설정 묶음 (CLAUDE.md, skills, agents, commands, rules, scripts, settings.json)
-- `install.sh` (Mac/Linux) 또는 `install.ps1` (Windows) - 설치 자동화 스크립트
+```
+claude-code-setup-pack/
+├── dot-claude/        ← ~/.claude/ 에 들어갈 설정 묶음
+│   ├── CLAUDE.md      (글로벌 규칙)
+│   ├── settings.json  (훅, 권한, 플러그인 설정)
+│   ├── skills/        (87개 스킬)
+│   ├── agents/        (80+개 에이전트)
+│   ├── commands/      (45개 슬래시 명령어)
+│   ├── rules/         (코딩 규칙)
+│   └── scripts/       (자동 실행 훅 스크립트)
+├── install.sh         ← 🍎 macOS / Linux 설치 스크립트
+├── install.ps1        ← 🪟 Windows 설치 스크립트
+└── README.md          ← 지금 보고 있는 이 문서
+```
 
 ---
 
@@ -33,49 +38,59 @@ Claude Code는 그냥 쓰면 '아주 똑똑한 비서'에요.
 
 ---
 
-## ⚡ 설치하기 (가장 쉬운 방법)
+## ⚡ 설치하기 (가장 쉬운 방법: 프롬프트 한 줄)
 
-### 🍏 Mac / Linux
+### 🌟 방법 1: Claude Code에 그대로 복붙 (가장 추천!)
 
-1. 이 레포에서 `claude-config-pack-mac.zip` 다운로드 ([여기 클릭](./claude-config-pack-mac.zip))
-2. 다운로드 폴더에 zip 파일이 들어왔는지 확인 (압축 풀지 마세요!)
-3. Claude Code 앱(터미널)을 열고, **아래 프롬프트를 그대로 복붙**:
+Claude Code 앱을 열고 **아래 프롬프트를 그대로** 붙여넣으세요. 다운로드, 압축해제, 실행을 Claude가 알아서 다 해줍니다. ✨
 
-> 💡 **TIP**: `@` 키를 누르면 파일을 첨부할 수 있어요. zip 파일을 끌어다 넣어도 됩니다.
+#### 🍏 Mac / Linux 용
 
 ```
-~/Downloads/claude-config-pack-mac.zip 이 파일에 들어있는
-Claude Code 글로벌 설정을 내 ~/.claude/에 적용해줘.
+https://github.com/seulkikaang/claude-code-setup-pack 이 레포의
+설정을 내 ~/.claude/ 폴더에 적용해줘.
 
-zip을 압축 해제하고, 그 안의 install.sh를 실행한 후,
-실행 결과를 보여줘.
-
-그 다음 안내에 나오는 플러그인들도 설치해줘.
+다음 순서로 진행해줘:
+1. 임시 폴더에 git clone (이미 있으면 git pull로 업데이트)
+2. install.sh 실행 권한 부여 후 bash install.sh 실행
+3. 실행 결과를 보여줘
+4. 안내에 나오는 플러그인들도 설치해줘
 ```
 
-4. Claude가 알아서 압축 해제 → 백업 → 설치까지 다 해줍니다. ✨
-5. 끝나면 Claude Code를 한 번 재시작 해주세요.
+#### 🪟 Windows 용
+
+```
+https://github.com/seulkikaang/claude-code-setup-pack 이 레포의
+설정을 내 %USERPROFILE%\.claude\ 폴더에 적용해줘.
+
+다음 순서로 진행해줘:
+1. 임시 폴더에 git clone (이미 있으면 git pull로 업데이트)
+2. powershell -ExecutionPolicy Bypass -File install.ps1 명령으로 실행
+3. 실행 결과를 보여줘
+4. 안내에 나오는 플러그인들도 설치해줘
+```
+
+끝나면 Claude Code를 한 번 재시작 해주세요. 🎉
 
 ---
 
-### 🪟 Windows
+### 🛠️ 방법 2: 터미널에서 직접 (한 줄 명령)
 
-1. 이 레포에서 `claude-config-pack-windows.zip` 다운로드 ([여기 클릭](./claude-config-pack-windows.zip))
-2. 다운로드 폴더에 zip 파일이 들어왔는지 확인
-3. Claude Code 앱을 열고, 아래 프롬프트를 그대로 복붙:
+Claude 없이 터미널에서 바로 설치하고 싶다면:
 
-```
-%USERPROFILE%\Downloads\claude-config-pack-windows.zip 이 파일에 들어있는
-Claude Code 글로벌 설정을 내 %USERPROFILE%\.claude\ 폴더에 적용해줘.
+#### 🍏 Mac / Linux
 
-zip을 압축 해제하고, 그 안의 install.ps1을
-powershell -ExecutionPolicy Bypass -File install.ps1 명령으로 실행한 후,
-실행 결과를 보여줘.
-
-그 다음 안내에 나오는 플러그인들도 설치해줘.
+```bash
+git clone https://github.com/seulkikaang/claude-code-setup-pack.git /tmp/ccsp && bash /tmp/ccsp/install.sh
 ```
 
-4. 끝나면 Claude Code를 재시작 해주세요. 🎉
+#### 🪟 Windows (PowerShell)
+
+```powershell
+git clone https://github.com/seulkikaang/claude-code-setup-pack.git $env:TEMP\ccsp; powershell -ExecutionPolicy Bypass -File $env:TEMP\ccsp\install.ps1
+```
+
+> 💡 git이 없는 Windows 사용자는 [Git for Windows](https://git-scm.com/download/win)를 먼저 설치하세요.
 
 ---
 
