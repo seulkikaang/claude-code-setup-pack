@@ -1,0 +1,4 @@
+interface:
+  display_name: "Korean Vibe Fonts"
+  short_description: "상업용 무료 한글 웹폰트를 주제별로 추천하고 적용"
+  default_prompt: "Use $korean-vibe-fonts to recommend and apply a commercially usable Korean webfont set for this UI."
